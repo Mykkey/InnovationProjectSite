@@ -1,0 +1,263 @@
+/* ---------- EDIT HERE: colours and fonts ---------- */
+:root {
+  --paper: #f6f2ea;
+  --ink: #1d1b18;
+  --muted: #6b665d;
+  --rule: #d9d2c4;
+  --accent: #a9772f;
+
+  --navy: #1f3047;      /* main colour */
+  --tint: #ece6d8;      /* slightly darker cream for alternating sections */
+  --gold: #c99a4a;      /* small accent, used sparingly */
+
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --page-width: 1040px;
+  --gutter: clamp(20px, 5vw, 48px);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior:smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px var(--gutter);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.brand {
+  font-family: var(--serif);
+  font-size: 1.35rem; font-weight: 500;
+  text-decoration: none;
+}
+.site-header nav { display: flex; gap: 28px; align-items: center; font-size: 0.92rem; }
+.site-header nav a { text-decoration: none; color: var(--muted); }
+.site-header nav a:hover { color: var(--ink); }
+.site-header nav .nav-cta {
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: clamp(80px, 16vh, 170px) var(--gutter) clamp(80px, 14vh, 150px);
+}
+.eyebrow {
+  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-bottom: 28px;
+}
+h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+h1 em { color: var(--muted); }
+.lead {
+  max-width: 34em;
+  margin-top: 32px;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--muted);
+}
+.hero-actions { margin-top: 40px; display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+
+.button {
+  display: inline-block;
+  background: var(--ink); color: var(--paper);
+  border: 0; border-radius: 2px;
+  padding: 14px 26px;
+  font: inherit; font-weight: 500; font-size: 0.95rem;
+  text-decoration: none; cursor: pointer;
+  transition: background 0.2s;
+}
+.button:hover { background: var(--accent); }
+.text-link { font-size: 0.95rem; color: var(--muted); text-decoration: none; }
+.text-link:hover { color: var(--ink); }
+
+/* ---------- Sections ---------- */
+.section {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: clamp(56px, 10vh, 110px) var(--gutter);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+}
+.section-label {
+  font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); padding-top: 0.7em;
+}
+h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  line-height: 1.12; letter-spacing: -0.01em;
+  max-width: 18em;
+}
+.intro { max-width: 36em; margin-top: 22px; color: var(--muted); font-size: 1.05rem; }
+.intro + .intro { margin-top: 14px; }
+
+/* Problem points */
+.points { margin-top: 48px; display: grid; gap: 28px; }
+.points li { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; }
+h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; }
+.points p { color: var(--muted); max-width: 32em; }
+
+/* Steps */
+.steps { margin-top: 48px; counter-reset: step; }
+.steps li {
+  counter-increment: step;
+  display: grid; grid-template-columns: 56px 1fr; column-gap: 8px;
+  padding: 22px 0; border-top: 1px solid var(--rule);
+}
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  grid-row: span 2;
+  font-family: var(--serif); color: var(--accent); font-size: 1.15rem;
+}
+.step-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; }
+.step-text { color: var(--muted); max-width: 34em; }
+
+/* Facts */
+.facts { margin-top: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.facts div { border-top: 1px solid var(--ink); padding-top: 14px; }
+.facts dt { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.facts dd { font-family: var(--serif); font-size: 1.25rem; margin-top: 4px; line-height: 1.3; }
+
+/* Signup */
+#signup-form { margin-top: 36px; display: flex; gap: 12px; max-width: 520px; }
+#signup-form input {
+  flex: 1; min-width: 0;
+  font: inherit; color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink); border-radius: 2px;
+  padding: 13px 16px;
+}
+#signup-form input:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.form-message { margin-top: 14px; min-height: 1.6em; color: var(--accent); font-size: 0.95rem; }
+
+/* Footer */
+.site-footer {
+  max-width: var(--page-width); margin: 0 auto;
+  padding: 28px var(--gutter) 40px;
+  border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--muted);
+}
+
+/* Scroll reveal (enabled by script.js) */
+.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.js .reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .site-header nav a:not(.nav-cta) { display: none; }
+  .section { grid-template-columns: 1fr; gap: 14px; }
+  .section-label { padding-top: 0; }
+  .points li { grid-template-columns: 1fr; gap: 6px; }
+  .facts { grid-template-columns: 1fr; }
+  #signup-form { flex-direction: column; }
+}
+
+/* ---------- Colour themes ----------
+   Two colours: navy and cream. Each section picks one with a class in index.html,
+   e.g. class="section theme-tint". */
+.hero, .section {
+  background: var(--bg, transparent);
+  color: var(--fg, var(--ink));
+  box-shadow: 0 0 0 100vmax var(--bg, transparent);   /* full-width colour */
+  clip-path: inset(0 -100vmax);
+}
+.section { border-top: 0; }
+.section-label, .hero .lead, .section .intro, .points p, .step-text, .facts dt { color: var(--soft, var(--muted)); }
+.hero h1 em { color: var(--soft, var(--muted)); }
+.hero .eyebrow, .steps li::before { color: var(--hi, var(--accent)); }
+.facts div { border-top: 0; }
+
+.theme-paper { --bg: var(--paper); --card: #fff; --hi: var(--accent); }
+.theme-tint  { --bg: var(--tint);  --card: rgba(255,255,255,.6); --hi: var(--accent); }
+.theme-navy  { --bg: var(--navy);  --fg: #f4efe6; --soft: #b4bfcd; --hi: var(--gold); --card: rgba(255,255,255,.07); }
+
+.theme-navy .button { background: var(--gold); color: #1d1b18; }
+.theme-navy .button:hover { background: #fff; }
+.theme-navy .text-link { color: var(--soft); }
+.theme-navy .text-link:hover { color: #fff; }
+
+/* ---------- Information bubbles ---------- */
+.points, .steps, .facts { gap: 16px; }
+.points { grid-template-columns: repeat(3, 1fr); }
+.steps  { display: grid; grid-template-columns: repeat(2, 1fr); }
+.points li, .steps li, .facts div {
+  background: var(--card);
+  border: 0;
+  border-radius: 20px;
+  padding: 24px;
+}
+.points li { display: block; }
+.points h3 { margin-bottom: 8px; }
+.steps li { display: block; }
+.steps li::before { display: block; margin-bottom: 10px; }
+.step-title, .step-text { display: block; }
+.step-text { margin-top: 6px; }
+.facts div { padding: 20px 22px; }
+.section .steps li, .section .points li { border-top: 0; }
+.section .facts div { border-top: 0; }
+@media (max-width: 760px) {
+  .points, .steps { grid-template-columns: 1fr; }
+}
+
+.site-header nav .nav-cta {
+  background: var(--navy); color: #f4efe6;
+  border: 0; border-radius: 999px; padding: 8px 18px;
+}
+.site-header nav .nav-cta:hover { background: var(--accent); color: #fff; }
+
+/* ---------- Sign-up: the main call to action ---------- */
+.section.signup {
+  display: block;
+  text-align: center;
+  padding-top: clamp(90px, 16vh, 170px);
+  padding-bottom: clamp(90px, 16vh, 170px);
+}
+.signup .section-label { color: var(--gold); margin-bottom: 20px; padding: 0; }
+.signup h2 { font-size: clamp(2.4rem, 6vw, 4.4rem); max-width: 14em; margin: 0 auto; }
+.signup .intro { margin: 24px auto 0; font-size: 1.2rem; }
+.signup #signup-form { margin: 44px auto 0; max-width: 620px; gap: 12px; }
+.signup #signup-form input {
+  padding: 20px 22px; font-size: 1.1rem; border-radius: 999px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(244,239,230,.45); color: #f4efe6;
+}
+.signup #signup-form input::placeholder { color: #93a2b6; }
+.signup #signup-form input:focus { outline-color: var(--gold); }
+.signup #signup-form .button { padding: 20px 34px; font-size: 1.05rem; border-radius: 999px; white-space: nowrap; }
+.signup .form-message { color: var(--gold); text-align: center; }
+.signup .fine-print { margin-top: 22px; font-size: 0.9rem; color: var(--soft); }
+@media (max-width: 760px) { .signup #signup-form { flex-direction: column; } }
